@@ -1,4 +1,4 @@
-package com.production.fursa.ktnotes
+package com.production.fursa.ktnotes.app
 
 import android.app.Application
 import io.realm.Realm

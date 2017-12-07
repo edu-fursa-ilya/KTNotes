@@ -10,33 +10,26 @@ import java.util.*
 open class KNote() : RealmObject() {
     @PrimaryKey
     var noteId: Int = 0
+    var notePriority: Int = 0
     var noteTitle: String = ""
     var noteText: String = ""
     var createDate: Date? = null
     var expDate: Date? = null
 
-    constructor(noteId: Int, noteTitle: String, noteText: String, createDate: Date?, expDate: Date?) : this() {
+    constructor(noteId: Int, notePriority: Int, noteTitle: String, noteText: String, createDate: Date?, expDate: Date?) : this() {
         this.noteId = noteId
+        this.notePriority = notePriority
         this.noteTitle = noteTitle
         this.noteText = noteText
         this.createDate = createDate
         this.expDate = expDate
     }
 
-    constructor(noteId: Int, noteTitle: String, noteText: String) : this() {
-        this.noteId = noteId
-        this.noteTitle = noteTitle
-        this.noteText = noteText
-    }
-
     fun printNote(): String = "Note: {" +
-            "ID: ${noteId} " +
-            "TITLE: ${noteTitle} " +
-            "TEXT: ${noteText} " +
-            "CREATED: ${createDate} " +
-            "EXPIRE: ${expDate}}"
-
-
-
-
+            "Note id: ${noteId} " +
+            "Note priority: ${notePriority} " +
+            "Note title: ${noteTitle} " +
+            "Note text: ${noteText} " +
+            "created: ${createDate} " +
+            "expire: ${expDate}}"
 }

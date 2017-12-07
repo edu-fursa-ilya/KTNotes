@@ -12,13 +12,13 @@ import io.realm.RealmResults
 class KNoteDAO {
     private var realm: Realm = Realm.getDefaultInstance()
 
-    fun create(note: KNote) {
+    fun save(note: KNote) {
         realm.beginTransaction()
         realm.copyToRealmOrUpdate(note)
         realm.commitTransaction()
     }
 
-    fun remove(noteId: Int) {
+    fun removeById(noteId: Int) {
         realm.beginTransaction()
         realm.where(KNote::class.java).equalTo("noteId", noteId).findAll().deleteAllFromRealm()
         realm.commitTransaction()
@@ -30,11 +30,17 @@ class KNoteDAO {
             Log.d(KNoteDAO::class.java.simpleName, "db - empty")
         }
         notes.forEach{
-            Log.d(KNoteDAO::class.java.simpleName, it.printNote())
+            Log.d(KNoteDAO::class.java.simpleName, "Title = ${it.noteTitle}")
+            Log.d(KNoteDAO::class.java.simpleName, "Priority = ${it.notePriority}")
+            Log.d(KNoteDAO::class.java.simpleName, "Text = ${it.noteText}")
+            Log.d(KNoteDAO::class.java.simpleName, "Created = ${it.createDate}")
+            Log.d(KNoteDAO::class.java.simpleName, "Expire = ${it.expDate}")
+            Log.d(KNoteDAO::class.java.simpleName, "-------------------------")
+
         }
     }
 
-    fun clearAll() {
+    fun removeAll() {
         realm.beginTransaction()
         realm.where(KNote::class.java).findAll().deleteAllFromRealm()
         realm.commitTransaction()
